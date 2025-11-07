@@ -1,0 +1,33 @@
+{
+  "environments": {
+    "development": {
+      "name": "Development",
+      "url": "https://your-dev-org.crm.dynamics.com",
+      "description": "Development environment for initial testing"
+    },
+    "test": {
+      "name": "Test/QA",
+      "url": "https://your-test-org.crm.dynamics.com",
+      "description": "Testing and quality assurance environment"
+    },
+    "production": {
+      "name": "Production",
+      "url": "https://your-prod-org.crm.dynamics.com",
+      "description": "Production environment"
+    }
+  },
+  "serviceConnection": {
+    "tenantId": "your-tenant-id",
+    "clientId": "your-client-id",
+    "clientSecret": "Set this in GitLab CI/CD Variables"
+  },
+  "solutions": [
+    {
+      "name": "ExampleSolution",
+      "displayName": "Example Solution",
+      "path": "Solutions/ExampleSolution",
+      "managed": false,
+      "description": "Example solution placeholder"
+    }
+  ]
+}
