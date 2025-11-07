@@ -35,7 +35,20 @@ pac auth create --url "$ENVIRONMENT_URL"
 
 # Export solution in unpacked format
 echo "Exporting solution..."
-pac solution export --path "$OUTPUT_PATH" --name "$SOLUTION_NAME" --managed false --overwrite
+
+# Check if directory exists and prompt user
+if [ -d "$OUTPUT_PATH" ]; then
+    echo "Warning: Directory $OUTPUT_PATH already exists."
+    read -p "Do you want to overwrite it? (y/N): " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Export cancelled."
+        exit 0
+    fi
+    pac solution export --path "$OUTPUT_PATH" --name "$SOLUTION_NAME" --managed false --overwrite
+else
+    pac solution export --path "$OUTPUT_PATH" --name "$SOLUTION_NAME" --managed false
+fi
 
 echo "=========================================="
 echo "Export completed successfully!"

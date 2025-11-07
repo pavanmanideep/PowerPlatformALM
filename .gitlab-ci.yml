@@ -70,7 +70,7 @@ deploy-dev:
   script:
     - echo "Deploying to Development environment..."
     # Example deployment command:
-    # pac auth create --environment $DEV_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
+    # pac auth create --url $DEV_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
     # pac solution import --path YourSolution.zip --async
     - echo "Deployment to DEV complete"
   environment:
@@ -87,7 +87,7 @@ deploy-test:
   script:
     - echo "Deploying to Test environment..."
     # Example deployment command:
-    # pac auth create --environment $TEST_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
+    # pac auth create --url $TEST_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
     # pac solution import --path YourSolution.zip --async
     - echo "Deployment to TEST complete"
   environment:
@@ -103,7 +103,7 @@ deploy-prod:
   script:
     - echo "Deploying to Production environment..."
     # Example deployment command:
-    # pac auth create --environment $PROD_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
+    # pac auth create --url $PROD_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
     # pac solution import --path YourSolution.zip --async
     - echo "Deployment to PROD complete"
   environment:
