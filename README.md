@@ -10,6 +10,8 @@ This repository provides a structured approach to:
 - Enable collaborative development
 - Track changes and maintain history
 
+**🚀 New here?** Check out the [Quick Start Guide](QUICKSTART.md) to get up and running in 5 minutes!
+
 ## Repository Structure
 
 ```
@@ -17,10 +19,20 @@ PowerPlatformALM/
 ├── .gitlab-ci.yml          # GitLab CI/CD pipeline configuration
 ├── .gitignore              # Git ignore patterns
 ├── README.md               # This file
+├── QUICKSTART.md           # Quick start guide (5 min setup)
 ├── CONTRIBUTING.md         # Contribution guidelines
-└── Solutions/              # Power Platform solutions directory
-    ├── README.md           # Solutions documentation
-    └── ExampleSolution/    # Example solution placeholder
+├── Solutions/              # Power Platform solutions directory
+│   ├── README.md           # Solutions documentation
+│   └── ExampleSolution/    # Example solution placeholder
+├── config/                 # Configuration templates
+│   ├── README.md           # Configuration documentation
+│   └── environments.template.json  # Environment configuration template
+├── docs/                   # Additional documentation
+│   ├── SETUP.md            # Detailed setup guide
+│   └── DEPLOYMENT.md       # Deployment workflows and guide
+└── scripts/                # Helper scripts
+    ├── README.md           # Scripts documentation
+    └── export-solution.sh  # Solution export helper
 ```
 
 ## Getting Started
