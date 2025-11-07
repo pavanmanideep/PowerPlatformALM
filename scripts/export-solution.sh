@@ -29,7 +29,8 @@ if ! command -v pac &> /dev/null; then
     exit 1
 fi
 
-# Authenticate to environment
+# Authenticate to environment (interactive authentication for local development)
+# For CI/CD, use Service Principal authentication with --applicationId, --clientSecret, and --tenant
 echo "Authenticating to environment..."
 pac auth create --url "$ENVIRONMENT_URL"
 

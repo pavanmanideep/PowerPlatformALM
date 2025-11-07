@@ -29,7 +29,7 @@ git checkout -b feature/your-feature-name
 Export your solution from Power Platform:
 
 ```bash
-# Authenticate to your environment
+# Authenticate to your environment (interactive - will prompt for credentials)
 pac auth create --url https://your-env.crm.dynamics.com
 
 # Export solution in unpacked format

@@ -164,8 +164,11 @@ If you need to deploy manually (outside pipeline):
 ### Using Power Platform CLI
 
 ```bash
-# Authenticate
+# Authenticate (interactive authentication - will prompt for credentials)
 pac auth create --url https://yourenv.crm.dynamics.com
+
+# For automated/CI scenarios, use Service Principal:
+# pac auth create --url https://yourenv.crm.dynamics.com --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
 
 # Import solution
 pac solution import --path Solutions/MySolution.zip

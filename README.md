@@ -148,7 +148,7 @@ For automated deployments, create a Service Principal (App Registration) in Azur
 The pipeline uses the following authentication approach:
 
 ```bash
-pac auth create --environment $ENVIRONMENT_URL \
+pac auth create --url $ENVIRONMENT_URL \
   --applicationId $CLIENT_ID \
   --clientSecret $CLIENT_SECRET \
   --tenant $TENANT_ID

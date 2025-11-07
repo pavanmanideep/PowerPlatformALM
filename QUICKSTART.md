@@ -47,7 +47,7 @@ chmod +x scripts/export-solution.sh
 ### Option B: Using Power Platform CLI
 
 ```bash
-# Authenticate
+# Authenticate (interactive - will prompt for credentials)
 pac auth create --url https://yourdev.crm.dynamics.com
 
 # Export solution
