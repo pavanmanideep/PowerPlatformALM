@@ -1,0 +1,115 @@
+# GitLab CI/CD Pipeline for Power Platform Solutions
+# This pipeline automates the deployment of Power Platform solutions
+
+variables:
+  # Power Platform CLI version
+  PP_CLI_VERSION: "latest"
+  
+  # Environment URLs (set these in GitLab CI/CD Variables)
+  # DEV_ENVIRONMENT_URL: "https://your-dev-env.crm.dynamics.com"
+  # TEST_ENVIRONMENT_URL: "https://your-test-env.crm.dynamics.com"
+  # PROD_ENVIRONMENT_URL: "https://your-prod-env.crm.dynamics.com"
+
+stages:
+  - validate
+  - build
+  - deploy-dev
+  - deploy-test
+  - deploy-prod
+
+# Template for authentication and setup
+.power-platform-setup: &power-platform-setup
+  before_script:
+    - echo "Installing Power Platform CLI..."
+    # Install Power Platform CLI (adjust based on your runner OS)
+    # For Linux:
+    # - apt-get update && apt-get install -y dotnet-sdk-6.0
+    # - dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+    # For Windows:
+    # - choco install powerapps-cli
+    - echo "Power Platform CLI setup complete"
+
+# Validate solution structure
+validate:
+  stage: validate
+  script:
+    - echo "Validating Power Platform solution structure..."
+    - |
+      if [ -d "Solutions" ]; then
+        echo "Solutions directory found"
+        ls -la Solutions/
+      else
+        echo "Warning: Solutions directory not found"
+      fi
+    - echo "Validation complete"
+  only:
+    - branches
+  except:
+    - main
+
+# Build/Export solutions
+build:
+  stage: build
+  <<: *power-platform-setup
+  script:
+    - echo "Building Power Platform solutions..."
+    # Add your build commands here
+    # Example: pac solution pack --zipfile output.zip --folder Solutions/YourSolution
+    - echo "Build complete"
+  artifacts:
+    paths:
+      - "*.zip"
+    expire_in: 1 week
+  only:
+    - branches
+
+# Deploy to Development environment
+deploy-dev:
+  stage: deploy-dev
+  <<: *power-platform-setup
+  script:
+    - echo "Deploying to Development environment..."
+    # Example deployment command:
+    # pac auth create --environment $DEV_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
+    # pac solution import --path YourSolution.zip --async
+    - echo "Deployment to DEV complete"
+  environment:
+    name: development
+  only:
+    - develop
+    - feature/*
+  when: manual
+
+# Deploy to Test environment
+deploy-test:
+  stage: deploy-test
+  <<: *power-platform-setup
+  script:
+    - echo "Deploying to Test environment..."
+    # Example deployment command:
+    # pac auth create --environment $TEST_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
+    # pac solution import --path YourSolution.zip --async
+    - echo "Deployment to TEST complete"
+  environment:
+    name: test
+  only:
+    - main
+  when: manual
+
+# Deploy to Production environment
+deploy-prod:
+  stage: deploy-prod
+  <<: *power-platform-setup
+  script:
+    - echo "Deploying to Production environment..."
+    # Example deployment command:
+    # pac auth create --environment $PROD_ENVIRONMENT_URL --applicationId $CLIENT_ID --clientSecret $CLIENT_SECRET --tenant $TENANT_ID
+    # pac solution import --path YourSolution.zip --async
+    - echo "Deployment to PROD complete"
+  environment:
+    name: production
+  only:
+    - main
+  when: manual
+  needs:
+    - deploy-test

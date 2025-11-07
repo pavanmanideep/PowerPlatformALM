@@ -1,0 +1,43 @@
+# Power Platform specific
+*.msapp
+*.zip
+temp/
+*.log
+
+# Build artifacts
+bin/
+obj/
+out/
+build/
+
+# Environment files
+.env
+*.env.local
+secrets/
+config/environments.json
+
+# IDE and Editor files
+.vscode/
+.vs/
+.idea/
+*.suo
+*.user
+*.swp
+*~
+
+# Node modules (if using Power Platform CLI)
+node_modules/
+package-lock.json
+
+# Python (if using Python scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+ENV/
+
+# OS files
+.DS_Store
+Thumbs.db
